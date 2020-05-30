@@ -10,7 +10,7 @@ from approval_step.approval_step_stack import (
 app = core.App()
 approval_stack = ApprovalStepStack(
     scope=app,
-    id="manual-approval-step")
+    id="approval-step")
 
 EmailProcessingStack(
     scope=app,
