@@ -1,0 +1,15 @@
+You got a request from $FROM:
+--------------------------------------------
+$SUBJECT
+--------------------------------------------
+
+$MESSAGE
+
+--------------------------------------------
+To ACCEPT the request:
+
+$APPROVE_URL
+
+To REJECT the request:
+
+$REJECT_URL
