@@ -66,12 +66,17 @@ class ApprovalStepStack(core.Stack):
             environment={
                 "TOPIC_ARN": email_topic.topic_arn,
                 "END_POINT": approve_api.url,
+                "TO_ADDRESS": constants.EMAIL_RECIPIENT,
+                "FROM_ADDRESS": constants.EMAIL_SENDER,
             },
             code=_lambda.Code.from_asset(
                 os.path.join('lambdas', 'submit-lambda')),
         )
-
         email_topic.grant_publish(submit_job_lambda)
+        submit_job_lambda.add_to_role_policy(statement=iam.PolicyStatement(
+            actions=['ses:Send*'],
+            resources=['*'],
+        ))
 
         submit_job = tasks.LambdaInvoke(
             scope=self,
